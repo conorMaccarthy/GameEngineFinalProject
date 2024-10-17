@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,10 +13,14 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float moveSpeed;
 
-    private void Start()
+    public event UnityAction OnTargetHit;
+
+    private void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        OnTargetHit += UIManager.instance.IncrementScore;
     }
 
     private void Update()
@@ -50,12 +55,10 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot()
     {
-        Debug.Log("shoot");
-        //Debug.DrawRay(gameCamera.transform.position, gameCamera.transform.TransformDirection(Vector3.forward) * 500, Color.yellow);
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 500)) 
         {
-            if (hit.transform.CompareTag("Target")) Destroy(hit.transform.gameObject);
+            if (hit.transform.CompareTag("Target")) OnTargetHit?.Invoke();
         }
     }
 }
