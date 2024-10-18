@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float moveSpeed;
 
+    [SerializeField] private Invoker invoker;
+    [SerializeField] private SpawnLogic spawner;
+
     public event UnityAction OnTargetHit;
 
     private void Awake()
@@ -56,9 +59,16 @@ public class PlayerController : MonoBehaviour
     private void Shoot()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 500)) 
+        if (Physics.Raycast(gameCamera.transform.position, gameCamera.transform.TransformDirection(Vector3.forward), out hit, 500)) 
         {
             if (hit.transform.CompareTag("Target")) OnTargetHit?.Invoke();
+            if (hit.transform.CompareTag("RaiseButton")) 
+            {
+                ICommand command = new RaiseDifficultyCommand();
+                invoker.ExecuteCommand(command); 
+            }
+            if (hit.transform.CompareTag("LowerButton")) invoker.UndoCommand();
+            if (hit.transform.CompareTag("StartButton")) spawner.StartSpawning(UIManager.instance.activeDifficulty);
         }
     }
 }

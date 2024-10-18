@@ -14,7 +14,7 @@ public class TargetLarge : MonoBehaviour, ITarget
         Vector3 startPosition = transform.position;
         Vector3 endposition = new Vector3(transform.position.x, transform.position.y, transform.position.z - 15);
         float timeElapsed = 0;
-        float travelTime = 4;
+        float travelTime = 2.5f;
 
         yield return new WaitForSeconds(0.5f);
 
