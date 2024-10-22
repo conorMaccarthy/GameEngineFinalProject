@@ -28,7 +28,7 @@ Observer:
 
 Command:
 
-![image](https://github.com/user-attachments/assets/9ba46016-2836-4d7f-8025-2231681d01ed)
+![image](https://github.com/user-attachments/assets/527d64b7-65f6-42db-9292-07bbbb47cc5e)
 
 Factory:
 
