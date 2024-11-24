@@ -8,7 +8,7 @@ public class LargeTargetFactory : TargetFactory
     
     public override ITarget CreateTarget()
     {
-        TargetLarge newTarget = GameObject.Instantiate(targetPrefab, new Vector3(Random.Range(-8, 8), 1.5f, 30), Quaternion.identity);
+        TargetLarge newTarget = GameObject.Instantiate(targetPrefab, new Vector3(Random.Range(-8, 9), 1.5f, 30), Quaternion.identity);
         return newTarget;
     }
 }

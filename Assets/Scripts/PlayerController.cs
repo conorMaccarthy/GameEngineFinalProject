@@ -17,13 +17,33 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SpawnLogic spawner;
 
     public event UnityAction OnTargetHit;
+    public event UnityAction OnRaiseButtonHit;
+    public event UnityAction OnLowerButtonHit;
+    public event UnityAction<int> OnStartButtonHit;
+    public event UnityAction OnStopButtonHit;
 
     private void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
 
+    private void OnEnable()
+    {
         OnTargetHit += UIManager.instance.IncrementScore;
+        OnRaiseButtonHit += RaiseDifficulty;
+        OnLowerButtonHit += LowerDifficulty;
+        OnStartButtonHit += spawner.StartSpawning;
+        OnStopButtonHit += spawner.StopSpawning;
+    }
+
+    private void OnDisable()
+    {
+        OnTargetHit -= UIManager.instance.IncrementScore;
+        OnRaiseButtonHit -= RaiseDifficulty;
+        OnLowerButtonHit -= LowerDifficulty;
+        OnStartButtonHit -= spawner.StartSpawning;
+        OnStopButtonHit -= spawner.StopSpawning;
     }
 
     private void Update()
@@ -62,13 +82,25 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(gameCamera.transform.position, gameCamera.transform.TransformDirection(Vector3.forward), out hit, 500)) 
         {
             if (hit.transform.CompareTag("Target")) OnTargetHit?.Invoke();
-            if (hit.transform.CompareTag("RaiseButton")) 
-            {
-                ICommand command = new RaiseDifficultyCommand();
-                invoker.ExecuteCommand(command); 
-            }
-            if (hit.transform.CompareTag("LowerButton")) invoker.UndoCommand();
-            if (hit.transform.CompareTag("StartButton")) spawner.StartSpawning(UIManager.instance.activeDifficulty);
+
+            if (hit.transform.CompareTag("RaiseButton")) OnRaiseButtonHit?.Invoke();
+            if (hit.transform.CompareTag("LowerButton")) OnLowerButtonHit?.Invoke();
+
+            //if (hit.transform.CompareTag("StartButton")) spawner.StartSpawning(UIManager.instance.activeDifficulty);
+            if (hit.transform.CompareTag("StartButton")) OnStartButtonHit?.Invoke(UIManager.instance.activeDifficulty);
+            //if (hit.transform.CompareTag("StopButton")) spawner.StopSpawning();
+            if (hit.transform.CompareTag("StopButton")) OnStopButtonHit?.Invoke();
         }
+    }
+
+    private void RaiseDifficulty()
+    {
+        ICommand command = new RaiseDifficultyCommand();
+        invoker.ExecuteCommand(command);
+    }
+
+    private void LowerDifficulty()
+    {
+        invoker.UndoCommand();
     }
 }

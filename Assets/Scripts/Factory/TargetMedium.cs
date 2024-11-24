@@ -12,7 +12,11 @@ public class TargetMedium : MonoBehaviour, ITarget
     private IEnumerator MoveTarget()
     {
         Vector3 startPosition = transform.position;
-        Vector3 endposition = new Vector3(transform.position.x, transform.position.y, transform.position.z - 15);
+        Vector3 endposition = new Vector3();
+        
+        if (transform.position.x < 0) endposition = new Vector3(transform.position.x + 12, transform.position.y, transform.position.z - 15);
+        else endposition = new Vector3(transform.position.x - 12, transform.position.y, transform.position.z - 15);
+
         float timeElapsed = 0;
         float travelTime = 2;
 

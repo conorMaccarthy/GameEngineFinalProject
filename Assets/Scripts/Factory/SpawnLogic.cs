@@ -37,9 +37,10 @@ public class SpawnLogic : MonoBehaviour
         }
     }
 
-    private void StopSpawning()
+    public void StopSpawning()
     {
         CancelInvoke();
+        Destroy(GameObject.FindGameObjectWithTag("Target"));
     }
 
     private void SpawnRandomTarget()
