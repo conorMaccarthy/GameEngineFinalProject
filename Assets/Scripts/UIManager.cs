@@ -7,7 +7,9 @@ public class UIManager : Singleton<UIManager>
 {
     private TextMeshProUGUI scoreText;
     private TextMeshProUGUI difficultyText;
+    private TextMeshProUGUI highscoreText;
     private int score;
+    private int highscore;
 
     public int activeDifficulty;
 
@@ -19,6 +21,10 @@ public class UIManager : Singleton<UIManager>
         difficultyText = GameObject.Find("DifficultyText").GetComponent<TextMeshProUGUI>();
         difficultyText.text = "DIFFICULTY: EASY";
 
+        highscore = 0;
+        highscoreText = GameObject.Find("HighscoreNumber").GetComponent<TextMeshProUGUI>();
+        highscoreText.text = highscore.ToString();
+
         activeDifficulty = 0;
 
         scoreText.text = "SCORE: " + score;
@@ -28,6 +34,12 @@ public class UIManager : Singleton<UIManager>
     {
         score += 10;
         scoreText.text = "SCORE: " + score;
+
+        if (score > highscore)
+        {
+            highscore = score;
+            highscoreText.text = highscore.ToString();
+        }
     }
 
     public void ResetScore()
