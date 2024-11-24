@@ -37,15 +37,6 @@ public class PlayerController : MonoBehaviour
         OnStopButtonHit += spawner.StopSpawning;
     }
 
-    private void OnDisable()
-    {
-        OnTargetHit -= UIManager.instance.IncrementScore;
-        OnRaiseButtonHit -= RaiseDifficulty;
-        OnLowerButtonHit -= LowerDifficulty;
-        OnStartButtonHit -= spawner.StartSpawning;
-        OnStopButtonHit -= spawner.StopSpawning;
-    }
-
     private void Update()
     {
         CameraMovement();
