@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
         float vertical = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
 
-        transform.Translate(horizontal, 0, vertical);
+        transform.Translate(new Vector3(horizontal, 0, vertical));
     }
 
     private void Shoot()
@@ -86,9 +86,7 @@ public class PlayerController : MonoBehaviour
             if (hit.transform.CompareTag("RaiseButton")) OnRaiseButtonHit?.Invoke();
             if (hit.transform.CompareTag("LowerButton")) OnLowerButtonHit?.Invoke();
 
-            //if (hit.transform.CompareTag("StartButton")) spawner.StartSpawning(UIManager.instance.activeDifficulty);
             if (hit.transform.CompareTag("StartButton")) OnStartButtonHit?.Invoke(UIManager.instance.activeDifficulty);
-            //if (hit.transform.CompareTag("StopButton")) spawner.StopSpawning();
             if (hit.transform.CompareTag("StopButton")) OnStopButtonHit?.Invoke();
         }
     }
