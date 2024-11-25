@@ -2996,10 +2996,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1221376549}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05889ea39f786d14d9e28f702a8b5fab, type: 3}
+  m_Script: {fileID: 11500000, guid: 1205b938da9f4f444bedbfe46bab1c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPool: {fileID: 1694749481}
+  meteorPrefab: {fileID: 9048880272519351153, guid: b5da25327b5314f48933c0b82a11ccb9, type: 3}
 --- !u!1 &1424311452
 GameObject:
   m_ObjectHideFlags: 0
@@ -3797,7 +3797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7120ee48b57a93e44b06d05e52c4ae02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolSize: 175
+  poolSize: 0
   meteorPrefab: {fileID: 4687577483450083848, guid: f7da6fdfffcad9740b4dd10231975002, type: 3}
 --- !u!4 &1694749482
 Transform:

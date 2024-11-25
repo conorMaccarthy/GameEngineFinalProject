@@ -4872,11 +4872,10 @@ GameObject:
   - component: {fileID: 4147193450654653435}
   - component: {fileID: 5343535013746478948}
   - component: {fileID: 8408589327298827551}
-  - component: {fileID: 4687577483450083848}
   - component: {fileID: 6385386822557197338}
-  - component: {fileID: 1193090882072928891}
+  - component: {fileID: 650965443217579194}
   m_Layer: 0
-  m_Name: Meteor_03
+  m_Name: Unoptimized_Meteor_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4970,19 +4969,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: fa2e670bb3648a84b9df8d16da25b85e, type: 3}
---- !u!114 &4687577483450083848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9048880272519351153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55e9596429ff214499718facd5a837c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pool: {fileID: 0}
 --- !u!95 &6385386822557197338
 Animator:
   serializedVersion: 5
@@ -5004,7 +4990,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1193090882072928891
+--- !u!114 &650965443217579194
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5013,6 +4999,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 9048880272519351153}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab91e78da8d15544d86257a307a663a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 08daa17180383ea458c5b7f43c5d06c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

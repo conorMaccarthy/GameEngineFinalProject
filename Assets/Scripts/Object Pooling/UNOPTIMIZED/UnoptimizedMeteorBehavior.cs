@@ -2,15 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeteorBehavior : MonoBehaviour
+public class UnoptimizedMeteorBehavior : MonoBehaviour
 {
-    private PooledObject pooledObject;
-    
-    private void Awake()
-    {
-        pooledObject = GetComponent<PooledObject>();
-    }
-
     public void BeginMoving()
     {
         StartCoroutine(Movement());
@@ -36,13 +29,6 @@ public class MeteorBehavior : MonoBehaviour
 
     private void Deactivate()
     {
-        StartCoroutine(DeactivateSequence());
-    }
-
-    IEnumerator DeactivateSequence()
-    {
-        yield return null;
-        pooledObject.ReturnToPool();
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeteorSpawner : MonoBehaviour
+public class UnoptimizedMeteorSpawner : MonoBehaviour
 {
-    [SerializeField] private ObjectPool objectPool;
+    [SerializeField] private GameObject meteorPrefab;
     
     void Start()
     {
@@ -13,10 +13,9 @@ public class MeteorSpawner : MonoBehaviour
 
     private void SpawnMeteor()
     {
-        GameObject newMeteor = objectPool.GetObjectFromPool().gameObject;
+        GameObject newMeteor = Instantiate(meteorPrefab);
 
-        newMeteor.SetActive(true);
         newMeteor.transform.position = new Vector3(transform.position.x, Random.Range(transform.position.y, transform.position.y + 30), Random.Range(transform.position.z, transform.position.z + 70));
-        newMeteor.GetComponent<MeteorBehavior>().BeginMoving();
+        newMeteor.GetComponent<UnoptimizedMeteorBehavior>().BeginMoving();
     }
 }

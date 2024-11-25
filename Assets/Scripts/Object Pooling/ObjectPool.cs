@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    public int poolSize = 20;
+    public int poolSize = 80;
     [SerializeField] private PooledObject meteorPrefab;
 
     private Stack<PooledObject> objectStack;
