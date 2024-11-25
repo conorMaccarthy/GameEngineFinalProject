@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Runtime.InteropServices;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -9,9 +10,12 @@ public class UIManager : Singleton<UIManager>
     private TextMeshProUGUI difficultyText;
     private TextMeshProUGUI highscoreText;
     private int score;
-    private int highscore;
 
     public int activeDifficulty;
+
+    [DllImport("ShootingRangeDLL")] private static extern void SetInitHighscore();
+    [DllImport("ShootingRangeDLL")] private static extern void CompareScore(int score);
+    [DllImport("ShootingRangeDLL")] private static extern int GetHighscore();
 
     private void Awake()
     {
@@ -21,9 +25,9 @@ public class UIManager : Singleton<UIManager>
         difficultyText = GameObject.Find("DifficultyText").GetComponent<TextMeshProUGUI>();
         difficultyText.text = "DIFFICULTY: EASY";
 
-        highscore = 0;
+        SetInitHighscore();
         highscoreText = GameObject.Find("HighscoreNumber").GetComponent<TextMeshProUGUI>();
-        highscoreText.text = highscore.ToString();
+        highscoreText.text = GetHighscore().ToString();
 
         activeDifficulty = 0;
 
@@ -34,12 +38,9 @@ public class UIManager : Singleton<UIManager>
     {
         score += 10;
         scoreText.text = "SCORE: " + score;
-
-        if (score > highscore)
-        {
-            highscore = score;
-            highscoreText.text = highscore.ToString();
-        }
+        
+        CompareScore(score);
+        highscoreText.text = GetHighscore().ToString();
     }
 
     public void ResetScore()
