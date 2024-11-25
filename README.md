@@ -10,6 +10,10 @@ Controls:
 - WASD - Move
 - M1 (Left click) - Shoot
 
+The project uses the following assets from the Unity Asset Store:
+- https://assetstore.unity.com/packages/3d/environments/landscapes/low-poly-simple-nature-pack-162153
+- https://assetstore.unity.com/packages/2d/textures-materials/sky/fantasy-skybox-free-18353
+
 This project demonstrates use of the following design patterns: Singleton, Observer, Command, Factory, Object Pooling. Below is a brief description of where in the project each pattern has been implemented:
 - Singleton: The UI Manager is a singleton. It controls the score displayed, as well as the current difficulty.
 - Observer: The UI Manager observes the Player Controller. When the player shoots a target, the UI Manager is notified and increases the score by 10.
